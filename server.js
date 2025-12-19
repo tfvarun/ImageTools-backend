@@ -259,11 +259,14 @@ app.post('/api/bulk-resize', upload.array('files', 10), async (req, res) => {
       });
     }
     // Respond with JSON containing URLs for each resized file
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
-    const filesPayload = results.map(r => ({
-      name: r.filename,
-      url: `${baseUrl}/output/${encodeURIComponent(r.filename)}`
-    }));
+ // FORCE HTTPS for production (Render)
+const baseUrl = `https://${req.get('host')}`;
+
+const filesPayload = results.map(r => ({
+  name: r.filename,
+  url: `${baseUrl}/output/${encodeURIComponent(r.filename)}`
+}));
+
 
     // Schedule cleanup of uploaded and output files
     req.files.forEach(file => cleanupFile(file.path));
