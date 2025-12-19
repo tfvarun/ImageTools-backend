@@ -489,14 +489,14 @@ app.post('/api/compress-preview', upload.single('file'), async (req, res) => {
   }
 });
 
-// Serve static files from React app
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+// // Serve static files from React app
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, 'client/build')));
   
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+//   });
+// }
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
