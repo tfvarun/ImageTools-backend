@@ -1,2 +1,4 @@
-# ImageTools-backend
-backend
+# ImageTools Backend
+
+Backend service for ImageTools.
+
